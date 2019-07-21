@@ -1,4 +1,3 @@
-
 # Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), 
 # find the minimum number of conference rooms required.
 
@@ -22,34 +21,7 @@ import heapq
 
 class Solution:
 
-	# scan line 扫描线
-	def minMeetingRooms_scanline(self, intervals):
-	    if intervals is None or len(intervals) == 0:
-	        return 0
-
-	    tmp = []
-
-	    # 标记起始点终止点
-	    for inter in intervals:
-	        tmp.append((inter[0], True))
-	        tmp.append((inter[1], False))
-
-	    # 排序
-	    tmp = sorted(tmp, key=lambda v: (v[0], v[1]))
-
-	    n = 0
-	    max_num = 0
-	    for arr in tmp:
-	        # 起始点+1
-	        if arr[1]:
-	            n += 1
-	        # 终止点-1
-	        else:
-	            n -= 1
-	        max_num = max(n, max_num)
-	    return max_num
-
-    # min-heap
+	# min-heap
 	def minMeetingRooms_heap(self, intervals):
 
 		if intervals is None or len(intervals) == 0:
@@ -84,6 +56,36 @@ class Solution:
 			heapq.heappush(arr_end, earliest)
 
 		return len(arr_end)
+
+	# scan line 
+	def minMeetingRooms_scanline(self, intervals):
+		if intervals is None or len(intervals) == 0:
+		    return 0
+
+		tmp = []
+
+		# label start and end points
+		for inter in intervals:
+		    tmp.append((inter[0], True))
+		    tmp.append((inter[1], False))
+
+		tmp = sorted(tmp, key=lambda v: (v[0], v[1]))
+		# print(tmp)
+
+		n = 0
+		max_num = 0
+		for arr in tmp:
+			
+			# start point+1
+			if arr[1]:
+			    n += 1
+			# end point-1
+			else:
+			    n -= 1
+			max_num = max(n, max_num)
+		return max_num
+
+    
 
 
 
