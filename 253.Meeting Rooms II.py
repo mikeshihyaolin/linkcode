@@ -24,38 +24,32 @@ class Solution:
 	# min-heap
 	def minMeetingRooms_heap(self, intervals):
 
-		if intervals is None or len(intervals) == 0:
-			return 0
+		# If there is no meeting to schedule then no room needs to be allocated.
+		if not intervals:
+		    return 0
 
-		arr_start = []
-		arr_end = []
+		# The heap initialization
+		free_rooms = []
 
-		# build a start-array  
-		for inter in intervals:
-			arr_start.append((inter[0], inter[1]))
+		# Sort the meetings in increasing order of their start time.
+		intervals.sort(key= lambda x: x[0])
 
-		# sort by start points
-		arr_start = sorted(arr_start, key=lambda v: (v[0]))
+		# Add the first meeting. We have to give a new room to the first meeting.
+		heapq.heappush(free_rooms, intervals[0][1])
 
+		# For all the remaining meeting rooms
+		for i in intervals[1:]:
 
-		arr_end = [arr_start[0][1]]
-		# build a end-heap
-		heapq.heapify(arr_end) 
-        
+		    # If the room due to free up the earliest is free, assign that room to this meeting.
+		    if free_rooms[0] <= i[0]:
+		        heapq.heappop(free_rooms)
 
-		for i in range(1, len(arr_start)): 
-			current_meeting = arr_start[i]
-			earliest = heapq.heappop(arr_end)
+		    # If a new room is to be assigned, then also we add to the heap,
+		    # If an old room is allocated, then also we have to add to the heap with updated end time.
+		    heapq.heappush(free_rooms, i[1])
 
-			if (current_meeting[0] >= earliest):
-				earliest = current_meeting[0]
-			else:
-				heapq.heappush(arr_end,current_meeting[1]) 
-
-
-			heapq.heappush(arr_end, earliest)
-
-		return len(arr_end)
+		# The size of the heap tells us the minimum rooms required for all the meetings.
+		return len(free_rooms)
 
 	# scan line 
 	def minMeetingRooms_scanline(self, intervals):
@@ -85,14 +79,13 @@ class Solution:
 			max_num = max(n, max_num)
 		return max_num
 
-    
-
-
 
 solution = Solution()
 
 print("scan-line")
 res = solution.minMeetingRooms_scanline([[0, 30],[5, 10],[15, 20]])
+print(res)
+res = solution.minMeetingRooms_scanline([[7,10],[2,4]])
 print(res)
 res = solution.minMeetingRooms_scanline([[7,10],[2,4]])
 print(res)
@@ -102,4 +95,7 @@ res = solution.minMeetingRooms_heap([[0, 30],[5, 10],[15, 20]])
 print(res)
 res = solution.minMeetingRooms_heap([[7,10],[2,4]])
 print(res)
+res = solution.minMeetingRooms_heap([[7,10],[2,4]])
+print(res)
+
 
