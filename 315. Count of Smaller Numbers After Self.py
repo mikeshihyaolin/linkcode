@@ -38,64 +38,25 @@
 #     else: 
 #         return mid 
 
-
+import bisect
 
 
 class Solution(object):
 
-	def __init__(self):
-		self.tmp = []
+    def countSmaller(self, nums):
+        # fir, sec, res = [], [], []
+        # for i in nums[::-1]:
+            # res += [bisect.bisect_left(fir,i) + bisect.bisect_left(sec,i)]
+            # bisect.insort_left(sec,i)
+            # if len(fir) < 4*len(sec):
+            #     fir = sorted(fir+sec)
+            #     sec = []
 
-	def binary_search(self, val, start, end):
-
-		if start == end:
-			if self.tmp[start] > val:
-				return start
-			else:
-				return start + 1
-
-		if start > end:
-			return start
-
-		mid = (start+end)/2
-
-		if self.tmp[mid] < val:
-			return self.binary_search(val, mid+1, end)
-		elif self.tmp[mid] > val:
-			return self.binary_search(val, start, mid)
-		else:
-			return mid
-
-
-	def find_idx(self, val):
-
-		insert_idx = self.binary_search(val, 0, len(self.tmp))
-		self.tmp.insert(insert_idx, val)
-		return  insert_idx
-
-
-	def countSmaller(self, nums):
-
-		nums = nums[::-1]
-
-		res = []
-
-		for val in nums:
-
-			if self.tmp == []:
-				self.tmp.append(val)
-				res.append(self.find_idx(self.tmp))
-				self.tmp.insert(0, val)
-
-			else:
-				res = self.find_idx(val)
-
-		return resself.tmp.insert(insert_idx, val)
-
-
-        
-
-
+        fir, sec, res = [], [], []
+        for i in nums[::-1]:
+            res += [bisect.bisect_left(sec,i)]
+            bisect.insort_left(sec,i)
+    	return res
 
 
 # Input: [5,2,6,1]
