@@ -38,6 +38,21 @@
 #     else: 
 #         return mid 
 
+Input = [5,2,6,1]
+res = []
+
+for i in range(len(Input)):
+    count = 0
+    for j in range(i+1, len(Input)):
+
+        if Input[i] > Input[j]:
+            count = count + 1
+    res.append(count)
+
+print(res)
+
+
+
 import bisect
 
 
@@ -46,17 +61,17 @@ class Solution(object):
     def countSmaller(self, nums):
         # fir, sec, res = [], [], []
         # for i in nums[::-1]:
-            # res += [bisect.bisect_left(fir,i) + bisect.bisect_left(sec,i)]
-            # bisect.insort_left(sec,i)
-            # if len(fir) < 4*len(sec):
-            #     fir = sorted(fir+sec)
-            #     sec = []
+        #     res += [bisect.bisect_left(fir,i) + bisect.bisect_left(sec,i)]
+        #     bisect.insort_left(sec,i)
+        #     if len(fir) < 4*len(sec):
+        #         fir = sorted(fir+sec)
+        #         sec = []
 
         fir, sec, res = [], [], []
         for i in nums[::-1]:
             res += [bisect.bisect_left(sec,i)]
             bisect.insort_left(sec,i)
-    	return res
+        return res
 
 
 # Input: [5,2,6,1]

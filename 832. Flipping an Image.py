@@ -11,6 +11,7 @@
 # Output: [[1,0,0],[0,1,0],[1,1,1]]
 # Explanation: First reverse each row: [[0,1,1],[1,0,1],[0,0,0]].
 # Then, invert the image: [[1,0,0],[0,1,0],[1,1,1]]
+
 # Example 2:
 
 # Input: [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
@@ -23,14 +24,16 @@
 # 0 <= A[i][j] <= 1
 
 class Solution(object):
-    def flipAndInvertImage(self, A):
-		"""
-		:type A: List[List[int]]
-		:rtype: List[List[int]]
-		"""
+	def flipAndInvertImage(self, A):
 		for i in range(len(A)):
 			A[i] = A[i][::-1]
-			A[i] = [x^1 for x in A[i]]
+			# A[i] = [x^1 for x in A[i]]
+			
+			for j in range(len(A[0])):
+				if A[i][j] == 0:
+					A[i][j] = 1
+				else:
+					A[i][j] = 0
 		return A
 
 
@@ -45,10 +48,11 @@ output = solution.flipAndInvertImage(A)
 print(output)
 
 
-# # Input: [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
-# # Output: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
-# A = [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
-# output = solution.flipAndInvertImage(A)
-# print(output)
+
+# Input: [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
+# Output: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
+A = [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
+output = solution.flipAndInvertImage(A)
+print(output)
 
 

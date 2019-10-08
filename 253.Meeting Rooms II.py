@@ -34,6 +34,7 @@ class Solution:
 		# Sort the meetings in increasing order of their start time.
 		intervals.sort(key= lambda x: x[0])
 
+		
 		# Add the first meeting. We have to give a new room to the first meeting.
 		heapq.heappush(free_rooms, intervals[0][1])
 
@@ -60,18 +61,18 @@ class Solution:
 
 		# label start and end points
 		for inter in intervals:
-		    tmp.append((inter[0], True))
-		    tmp.append((inter[1], False))
+		    tmp.append((inter[0], "start"))
+		    tmp.append((inter[1], "end"))
 
 		tmp = sorted(tmp, key=lambda v: (v[0], v[1]))
-		# print(tmp)
+		print(tmp)
 
 		n = 0
 		max_num = 0
 		for arr in tmp:
 			
 			# start point+1
-			if arr[1]:
+			if arr[1] == "start":
 			    n += 1
 			# end point-1
 			else:
@@ -97,5 +98,11 @@ res = solution.minMeetingRooms_heap([[7,10],[2,4]])
 print(res)
 res = solution.minMeetingRooms_heap([[7,10],[2,4]])
 print(res)
+
+
+intervals = [[0, 30],[5, 10],[15, 20]]
+
+for inter in intervals:
+	print(inter)
 
 

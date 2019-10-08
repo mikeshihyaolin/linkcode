@@ -33,8 +33,11 @@ class Solution(object):
 			return 0
 
 		stones = map(lambda x: x*(-1), stones)
+		
+		stones = list(stones)
 		print("original list:")
 		print(stones)
+
 		heapq.heapify(stones)
 		print("build a min-heap:")
 		print(stones)
