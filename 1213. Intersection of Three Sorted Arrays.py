@@ -28,7 +28,7 @@ class Solution(object):
 	def arraysIntersection(self, arr1, arr2, arr3):
 		res = []
 		arr_all = arr1 + arr2 + arr3
-		s = self.convert(arr1)
+		# s = self.convert(arr1)
 		dict = collections.Counter(arr_all)
 
 		for item in dict.items():
