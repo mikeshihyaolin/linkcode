@@ -18,9 +18,12 @@ class Solution(object):
 		ans = sums = 0
 		cnt = collections.Counter()
 		for num in nums:
+
 			cnt[sums] += 1
 			sums += num
 			ans += cnt[sums - k]
+		
+		print(cnt)
 		return ans
 
 sol = Solution()

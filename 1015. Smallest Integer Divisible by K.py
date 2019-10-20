@@ -34,16 +34,13 @@ class Solution(object):
 		:type K: int
 		:rtype: int
 		"""
-
 		digit = 1
-
-		if K % 2 == 0:
+		if K % 2 == 0 or K%5 ==0:
 			return -1
 		else:
 			while digit % K !=0:
 				digit = digit*10+ 1
 			return len(str(digit))
-
 
 sol = Solution()
 

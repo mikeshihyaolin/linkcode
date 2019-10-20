@@ -11,8 +11,9 @@ class Codec:
 
 	def __init__(self):
 		self.dict = {}
+		self.dict_url = {}
 		self.c = 0
-		self.code = "www.tinyurl."
+		self.code = ""
 
 	def encode(self, longUrl):
 		"""Encodes a URL to a shortened URL.
@@ -20,13 +21,15 @@ class Codec:
 		:type longUrl: str
 		:rtype: str
 		"""
-		if longUrl not in self.dict:
+		if longUrl not in self.dict_url:
 			code = self.code + str(self.c)
 			self.c = self.c + 1
 			self.dict[code] = longUrl
+			self.dict_url[longUrl] = code
+		else:
+			code = self.dict_url[longUrl]
 
 		return code
-
 
 	def decode(self, shortUrl):
 		"""Decodes a shortened URL to its original URL.
@@ -37,9 +40,36 @@ class Codec:
 		return self.dict[shortUrl]
         
 sol = Codec()
-url = "https://leetcode.com/problems/design-tinyurl"
-short_url = sol.encode(url)
-print(short_url)
+x = "https://leetcode.com/problems/design-tinyurl"
+short_url = sol.encode(x)
+print("origin: "+x)
+print("encode: "+short_url)
 original_url = sol.decode(short_url)
-print(original_url)
+print("decode: "+original_url)
 
+print("------")
+url = "www.google.com"
+short_url = sol.encode(url)
+print("origin: "+url)
+print("encode: "+short_url)
+original_url = sol.decode(short_url)
+print("decode: "+original_url)
+
+print("------")
+url = "www.google.com"
+short_url = sol.encode(url)
+print("origin: "+url)
+print("encode: "+short_url)
+original_url = sol.decode(short_url)
+print("decode: "+original_url)
+
+print("------")
+url = "www.cosera.com"
+short_url = sol.encode(url)
+print("origin: "+url)
+print("encode: "+short_url)
+original_url = sol.decode(short_url)
+print("decode: "+original_url)
+
+
+print(sol.dict)
