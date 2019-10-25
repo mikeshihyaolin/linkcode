@@ -9,9 +9,6 @@ class ListNode:
     self.next = None
     return
 
-
-# 在建立一個節點時，需要傳入一個data的值，並且指標預設是指向None的。
-# 這樣就會建立一個帶有15的資料的節點了，
 node1 = ListNode(15)
 print(node1.data)
 print(node1.next)
