@@ -31,7 +31,6 @@ class Solution(object):
 		while continue_len <= min_len:
 			for i, _ in enumerate(strs):
 				if i>0:
-
 					if strs[i][0:continue_len]!=strs[i-1][0:continue_len]:
 						return "".join(strs[i][0:continue_len-1])
 			continue_len += 1
@@ -43,7 +42,7 @@ class Solution(object):
 sol = Solution()
 
 Input= ["flower","flow","flight"]
-# Input= ["dog","racecar","car"]
+Input= ["dog","racecar","car"]
 Input = []
 
 res = sol.longestCommonPrefix(Input)
