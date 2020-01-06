@@ -37,10 +37,6 @@ class Solution(object):
 
 		return head.next
 
-
-
-
-
 List1 = ListNode(1)
 List1.next = ListNode(2)
 List1.next.next = ListNode(4)
